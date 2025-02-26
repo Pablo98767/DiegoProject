@@ -1,10 +1,13 @@
-
 import requests
 import json
 from data.aws_s3 import get_products_from_s3
+from dotenv import load_dotenv
+import os
 
-# Chave da API diretamente no código (lembre-se de substituí-la pela sua chave real)
-API_KEY = "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"
+# Carregar as variáveis de ambiente do arquivo .env
+load_dotenv()
+
+API_KEY = os.getenv("API_KEY")
 
 def generate_response(user_input):
     """Gera uma resposta baseada nos produtos armazenados no S3"""
@@ -40,7 +43,7 @@ def generate_response(user_input):
                 "Content-Type": "application/json",
             },
             data=json.dumps({
-                "model": "google/gemini-2.0-flash-thinking-exp:free",  # Modelo do Google Gemini
+                "model": "google/gemini-2.0-flash-lite-preview-02-05:free",  # Modelo do Google Gemini
                 "messages": [
                     {
                         "role": "system",

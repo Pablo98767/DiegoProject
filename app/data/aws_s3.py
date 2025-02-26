@@ -1,10 +1,15 @@
 import boto3
 import json
+from dotenv import load_dotenv
+import os
 
-AWS_ACCESS_KEY = "AKIAW5WU45WLGEZTT3UC"
-AWS_SECRET_KEY = "zi9W3b9hVhTuofZAoDRI/PmHN3P6YX/inqBdBP8S"
-AWS_BUCKET_NAME = "datalake-fakestore"
-AWS_OBJECT_KEY = "products_data.json"
+# Carregar as variáveis de ambiente do arquivo .env
+load_dotenv()
+
+AWS_ACCESS_KEY = os.getenv("AWS_ACCESS_KEY_ID")
+AWS_SECRET_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
+AWS_BUCKET_NAME = os.getenv("AWS_BUCKET_NAME")
+AWS_OBJECT_KEY = os.getenv("AWS_OBJECT_KEY")
 
 def get_products_from_s3():
     """Busca e retorna os dados dos produtos armazenados no S3"""
